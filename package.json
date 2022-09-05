@@ -5,5 +5,23 @@
     "express": "^4.18.1",
     "method-override": "^3.0.0",
     "mongoose": "^6.5.4"
-  }
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "project2",
+  "description": "heroku homework",
+  "version": "1.0.0",
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sylvialchen/project2.git"
+  },
+  "author": "Sylvia Chen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sylvialchen/project2/issues"
+  },
+  "homepage": "https://github.com/sylvialchen/project2#readme"
 }
