@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const methodOverride = require('method-override');
 
+
 // Port
 const PORT = process.env.PORT || 3000;
 
@@ -41,7 +42,7 @@ app.use('/sessions', sessionsController);
 app.get('/', (req, res) => {
 	if (req.session.currentUser) {
 		res.render('dashboard.ejs', {
-			currentUser: req.session.currentUser
+			currentUser: req.session.currentUser,
 		});
 	} else {
 		res.render('index.ejs', {
@@ -49,6 +50,10 @@ app.get('/', (req, res) => {
 		});
 	}
 });
+
+
+
+
 
 // Listener
 app.listen(PORT, () => console.log(`server is listening on port: ${PORT}`));

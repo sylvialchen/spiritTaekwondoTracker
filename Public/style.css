@@ -34,3 +34,16 @@ body, html {
 h1 {
     color: white;
 }
+li {
+    color: black;
+    list-style: none;
+    background-color: rgb(255, 255, 255, 0.6);
+    max-width: 400px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+.classContainerRight {
+    text-align: right;
+
+}

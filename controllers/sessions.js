@@ -3,10 +3,22 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const sessionsRouter = express.Router();
 const User = require('../models/user.js');
+const RidgewoodClasses = require('../models/ridgewoodClasses.js');
+
+module.exports = sessionsRouter;
 
 sessionsRouter.use(express.static("Public"));
 
-// Index 
+// Index
+sessionsRouter.get('/signedin', (req,res) => {
+    RidgewoodClasses.find({}, (error, allClasses) => {
+        res.render('dashboard.ejs', {
+            currentUser: req.session.currentUser,
+            classes: allClasses,
+        })
+    })
+})
+
 // New (login page)
 sessionsRouter.get('/new', (req, res) => {
 	res.render('sessions/new.ejs', {
@@ -21,6 +33,7 @@ sessionsRouter.delete('/', (req, res) => {
 });
 
 // Update
+
 // Create (login route)
 sessionsRouter.post('/', (req, res) => {
     // Check for an existing user
@@ -39,14 +52,19 @@ sessionsRouter.post('/', (req, res) => {
             if (passwordMatches) {
                 // add the user to our session
                 req.session.currentUser = foundUser;
-
-                // redirect back to our home page
-                res.redirect('/');
+                // redirect to dashboard
+                res.redirect('sessions/signedin');
             } else {
                 // if the passwords don't match
                 res.send('Oops! Invalid credentials.');
             }
         }
+    });
+});
+
+sessionsRouter.post('/', (req, res) => {
+    RidgewoodClasses.create(req.body, (error, newClass) => {
+        res.send('dashboard.ejs');
     });
 });
 

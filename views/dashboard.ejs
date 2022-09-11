@@ -10,8 +10,41 @@
 </nav>
 
 <body class="backgroundImg">
-	<div class="backgroundOverlay">
-	<h1>Dashboard</h1>
+  <div class="backgroundOverlay">
+    <h1>Dashboard</h1>
+
+    <%const months = ["Jan", "Feb", "March", "April", "May","June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"]%>
+    <%const days= ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]%>
+    <%for (i=0; i < classes.length; i++) {%>
+    <li>
+      <div><label>Class:</label> <%=classes[i].className%><br>
+        <label>Belts:</label> <%=classes[i].beltQualifier[0]%> - <%=classes[i].beltQualifier[classes[i].beltQualifier.length -1]%>
+      </div>
+      <div class="classContainerRight">
+        <!-- Show Date -->
+        <%day = classes[i].dateScheduled.getDay();%>
+        <%month = classes[i].dateScheduled.getMonth();%>
+        <%date = classes[i].dateScheduled.getDate();%>
+        <%year = classes[i].dateScheduled.getFullYear();%>
+        <%=days[day]%>, <%=months[month]%> <%=date%>, <%=year%>
+<br>
+
+        <!-- Show Time -->
+        <%hour = classes[i].dateScheduled.getHours();%>
+        <% if (parseInt(hour) > 12) { %>
+        <%hour = parseInt(hour) - 12%>
+        <%morningAfternoon = "PM"%>
+        <%} else {%>
+        <%morningAfternoon = "AM"%>
+        <%}%>
+      <%minute = classes[i].dateScheduled.getMinutes();%>
+        <%if (minute < 10){	%>
+        <%minute = ("0" + minute)	%>
+        <%}%>
+      <%=hour%>:<%=minute%> <%=morningAfternoon%><br>
+        <%}%>
+	  </div>
+	
 </div>
 </body>
 </html>
