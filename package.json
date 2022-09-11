@@ -1,27 +1,31 @@
 {
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "dotenv": "^16.0.2",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
+    "express-session": "^1.17.3",
     "method-override": "^3.0.0",
-    "mongoose": "^6.5.4"
+    "mongoose": "^6.5.5"
   },
   "scripts": {
     "start": "node server.js"
   },
-  "name": "project2",
-  "description": "heroku homework",
+  "name": "spirittaekwondo",
   "version": "1.0.0",
   "main": "server.js",
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sylvialchen/project2.git"
+    "url": "git+https://github.com/sylvialchen/meen-auth-starter.git"
   },
   "author": "Sylvia Chen",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sylvialchen/project2/issues"
+    "url": "https://github.com/sylvialchen/meen-auth-starter/issues"
   },
-  "homepage": "https://github.com/sylvialchen/project2#readme"
+  "homepage": "https://github.com/sylvialchen/meen-auth-starter#readme",
+  "description": "project2",
+  "keywords": [
+  ]
 }

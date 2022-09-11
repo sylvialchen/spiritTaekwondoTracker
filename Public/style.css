@@ -1,0 +1,36 @@
+body, html {
+    height: 100%;
+  }
+  nav {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  a:link, a:visited {
+    color: white;
+    text-decoration: none;
+  }
+  a:hover {
+    color: red;
+  }
+
+.backgroundImg {
+    z-index: -100;
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+    background-image: url(NewIgniteSchoolWallpaper-1.jpeg);
+    background-position: center center;
+    background-size: cover;
+}
+.backgroundOverlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    z-index: -99;
+}
+h1 {
+    color: white;
+}
