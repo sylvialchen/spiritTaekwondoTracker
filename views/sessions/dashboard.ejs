@@ -2,17 +2,23 @@
 <html lang="en">
 
 <head>
-  <%- include('./partials/head.ejs') %>
+  <%- include('../partials/head.ejs') %>
 </head>
 
 <nav>
-  <%- include('./partials/nav.ejs') %>
+  <%- include('../partials/nav.ejs') %>
 </nav>
 
 <body class="backgroundImg">
-  <div class="backgroundOverlay">
-    <h1>Dashboard</h1>
-
+  <section class="backgroundOverlay">
+    <h1>Spirit Taekwondo Tracker</h1>
+	<p></p>
+	<h2>Your Stats</h2>
+	<p></p>
+	<a href="">Previous Classes</a>
+	<p></p>
+	<h2>Upcoming Classes</h2>
+	<p>
     <%const months = ["Jan", "Feb", "March", "April", "May","June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"]%>
     <%const days= ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]%>
     <%for (i=0; i < classes.length; i++) {%>
@@ -21,15 +27,13 @@
         <label>Belts:</label> <%=classes[i].beltQualifier[0]%> - <%=classes[i].beltQualifier[classes[i].beltQualifier.length -1]%>
       </div>
       <div class="classContainerRight">
-        <!-- Show Date -->
+        <!-- Date Parse -->
         <%day = classes[i].dateScheduled.getDay();%>
         <%month = classes[i].dateScheduled.getMonth();%>
         <%date = classes[i].dateScheduled.getDate();%>
         <%year = classes[i].dateScheduled.getFullYear();%>
-        <%=days[day]%>, <%=months[month]%> <%=date%>, <%=year%>
-<br>
 
-        <!-- Show Time -->
+        <!-- Time Parse-->
         <%hour = classes[i].dateScheduled.getHours();%>
         <% if (parseInt(hour) > 12) { %>
         <%hour = parseInt(hour) - 12%>
@@ -41,10 +45,30 @@
         <%if (minute < 10){	%>
         <%minute = ("0" + minute)	%>
         <%}%>
-      <%=hour%>:<%=minute%> <%=morningAfternoon%><br>
-        <%}%>
+
+        <%=days[day]%> <%=hour%>:<%=minute%> <%=morningAfternoon%><br>
+        <%=months[month]%> <%=date%>, <%=year%>
+
+
+        
+      <br>
 	  </div>
-	
+	<div>
+    <!-- Icons from iconfinder.com -->
+		<a href=""><img class ="editIcon" src="8581110_start_writing_pencil_pen_write_icon.png" ></a>
+    
+    <form action="./sessions/<%=classes[i]._id%>?_method=DELETE" method="POST">
+      <input type="image" class ="deleteIcon" src="430088_circle_close_delete_remove_icon.png">
+    </form>
+    
+	</div></li>
+	<%}%>
+</p>
+
+<div>
+<a href="">Add a New Class</a>
 </div>
+</section>
 </body>
+
 </html>

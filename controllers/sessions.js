@@ -12,7 +12,7 @@ sessionsRouter.use(express.static("Public"));
 // Index
 sessionsRouter.get('/signedin', (req,res) => {
     RidgewoodClasses.find({}, (error, allClasses) => {
-        res.render('dashboard.ejs', {
+        res.render('./sessions/dashboard.ejs', {
             currentUser: req.session.currentUser,
             classes: allClasses,
         })
@@ -25,12 +25,21 @@ sessionsRouter.get('/new', (req, res) => {
 		currentUser: req.session.currentUser
 	});
 });
+
+// Delete
+sessionsRouter.delete("/:id", (req, res) => {
+    RidgewoodClasses.findByIdAndDelete(req.params.id, (err, data) => {
+      res.redirect('signedin')
+    })
+  });
+
 // Delete (logout route)
 sessionsRouter.delete('/', (req, res) => {
   req.session.destroy((error) => {
     res.redirect('/');
   });
 });
+
 
 // Update
 
