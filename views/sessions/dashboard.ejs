@@ -10,7 +10,7 @@
 </nav>
 
 <body class="backgroundImg">
-  <section class="backgroundOverlay">
+  <!-- <section class="backgroundOverlay"> -->
     <h1>Spirit Taekwondo Tracker</h1>
 	<p></p>
 	<h2>Your Stats</h2>
@@ -18,15 +18,15 @@
 	<a href="">Previous Classes</a>
 	<p></p>
 	<h2>Upcoming Classes</h2>
-	<p>
+	<div>
     <%const months = ["Jan", "Feb", "March", "April", "May","June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"]%>
     <%const days= ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]%>
     <%for (i=0; i < classes.length; i++) {%>
     <li>
-      <div><label>Class:</label> <%=classes[i].className%><br>
+      <p><label>Class:</label> <%=classes[i].className%><br>
         <label>Belts:</label> <%=classes[i].beltQualifier[0]%> - <%=classes[i].beltQualifier[classes[i].beltQualifier.length -1]%>
-      </div>
-      <div class="classContainerRight">
+      </p>
+      <p class="classContainerRight">
         <!-- Date Parse -->
         <%day = classes[i].dateScheduled.getDay();%>
         <%month = classes[i].dateScheduled.getMonth();%>
@@ -48,25 +48,20 @@
 
         <%=days[day]%> <%=hour%>:<%=minute%> <%=morningAfternoon%><br>
         <%=months[month]%> <%=date%>, <%=year%>
-
-
-        
       <br>
-	  </div>
-	<div>
+        </p>
+	<p>
     <!-- Icons from iconfinder.com -->
 		<a href=""><img class ="editIcon" src="8581110_start_writing_pencil_pen_write_icon.png" ></a>
     
-    <form action="./sessions/<%=classes[i]._id%>?_method=DELETE" method="POST">
+    <form action="/sessions/<%=classes[i]._id%>?_method=DELETE" method="POST">
       <input type="image" class ="deleteIcon" src="430088_circle_close_delete_remove_icon.png">
     </form>
-    
-	</div></li>
+	</p></li>
 	<%}%>
-</p>
-
+</div>
 <div>
-<a href="">Add a New Class</a>
+<a href="newclass">Add a New Class</a>
 </div>
 </section>
 </body>

@@ -26,12 +26,13 @@ sessionsRouter.get('/new', (req, res) => {
 	});
 });
 
-// Delete
-sessionsRouter.delete("/:id", (req, res) => {
-    RidgewoodClasses.findByIdAndDelete(req.params.id, (err, data) => {
-      res.redirect('signedin')
-    })
-  });
+// New
+sessionsRouter.get('/newclass', (req, res) => {
+    res.render('sessions/newClass.ejs', {
+        currentUser: req.session.currentUser
+    });
+});
+
 
 // Delete (logout route)
 sessionsRouter.delete('/', (req, res) => {
@@ -39,6 +40,13 @@ sessionsRouter.delete('/', (req, res) => {
     res.redirect('/');
   });
 });
+
+// Delete
+sessionsRouter.delete("/:id", (req, res) => {
+    RidgewoodClasses.findByIdAndDelete(req.params.id, (err, data) => {
+      res.redirect('signedin')
+    })
+  });
 
 
 // Update
@@ -71,9 +79,10 @@ sessionsRouter.post('/', (req, res) => {
     });
 });
 
-sessionsRouter.post('/', (req, res) => {
+sessionsRouter.post('/addnewclass', (req, res) => {
     RidgewoodClasses.create(req.body, (error, newClass) => {
-        res.send('dashboard.ejs');
+        console.log(req.body)
+        res.redirect('signedin');
     });
 });
 
