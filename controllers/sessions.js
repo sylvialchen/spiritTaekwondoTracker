@@ -50,6 +50,20 @@ sessionsRouter.delete("/:id", (req, res) => {
 
 
 // Update
+sessionsRouter.put("/:id", (req, res) => {  
+    console.log(req.body)
+    RidgewoodClasses.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        new: true,
+      },
+      (error, updatedClass) => {
+        res.redirect('../signedin')
+      }
+    )
+  })
+
 
 // Create (login route)
 sessionsRouter.post('/', (req, res) => {
@@ -87,6 +101,15 @@ sessionsRouter.post('/addnewclass', (req, res) => {
 });
 
 // Edit
+sessionsRouter.get("/:id/edit", (req, res) => {
+    RidgewoodClasses.findById(req.params.id, (err, foundClass) => {
+      res.render('sessions/editClass.ejs', {
+        currentUser: req.session.currentUser,
+        foundClass: foundClass,
+      })
+    })
+  });
+
 // Show
 
 // Export Sessions Router

@@ -5,25 +5,23 @@
   <%- include('../partials/head.ejs') %>
 </head>
 
-<nav>
-  <%- include('../partials/nav.ejs') %>
-</nav>
-
 <body class="backgroundImg">
-  <!-- <section class="backgroundOverlay"> -->
+
     <h1>Spirit Taekwondo Tracker</h1>
+    <nav>
+      <%- include('../partials/nav.ejs') %>
+    </nav>
+
 	<p></p>
 	<h2>Your Stats</h2>
-	<p></p>
-	<a href="">Previous Classes</a>
-	<p></p>
+  <p></p>
 	<h2>Upcoming Classes</h2>
 	<div>
     <%const months = ["Jan", "Feb", "March", "April", "May","June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"]%>
     <%const days= ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]%>
     <%for (i=0; i < classes.length; i++) {%>
     <li>
-      <p><label>Class:</label> <%=classes[i].className%><br>
+      <p class="classContainerLeft"><label>Class:</label> <%=classes[i].className%><br>
         <label>Belts:</label> <%=classes[i].beltQualifier[0]%> - <%=classes[i].beltQualifier[classes[i].beltQualifier.length -1]%>
       </p>
       <p class="classContainerRight">
@@ -50,18 +48,19 @@
         <%=months[month]%> <%=date%>, <%=year%>
       <br>
         </p>
-	<p>
+	<p class="classContainerIcons">
     <!-- Icons from iconfinder.com -->
-		<a href=""><img class ="editIcon" src="8581110_start_writing_pencil_pen_write_icon.png" ></a>
+		<a href="/sessions/<%=classes[i]._id%>/edit" display="block"><img class ="editIcon" src="8581110_start_writing_pencil_pen_write_icon.png"></a>
     
     <form action="/sessions/<%=classes[i]._id%>?_method=DELETE" method="POST">
       <input type="image" class ="deleteIcon" src="430088_circle_close_delete_remove_icon.png">
     </form>
+
 	</p></li>
 	<%}%>
 </div>
 <div>
-<a href="newclass">Add a New Class</a>
+
 </div>
 </section>
 </body>

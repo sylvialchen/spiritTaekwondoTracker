@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head.ejs') %>
+</head>
+
+<nav>
+  <%- include('../partials/nav.ejs') %>
+</nav>
+
+<body class="backgroundImg">
+
+  <h1>Edit Class</h1>
+  
+  <form action="/sessions/<%=foundClass._id%>/?_method=PUT" method="POST">
+  <label for="name">Class Name:</label>
+  <input name="className" type="text" value="<%=foundClass.className%>"><br>
+
+  <label for="beltQualifier">Belts:</label><br>
+
+  <%function selectBelt(color){ %>
+  <%for (i = 0; i < foundClass.beltQualifier.length; i++) { %>
+    <%if (color === foundClass.beltQualifier[i]) {%>
+      <%="checked"%>
+      <%;break%>
+      <%}}}%>
+      
+  <input name="beltQualifier" type="checkbox" value="White" <%=selectBelt("White")%>>White<br>
+  <input name="beltQualifier" type="checkbox" value="Yellow" <%=selectBelt("Yellow")%>>Yellow<br>
+  <input name="beltQualifier" type="checkbox" value="Orange" <%=selectBelt("Orange")%>>Orange<br>
+  <input name="beltQualifier" type="checkbox" value="Green" <%=selectBelt("Green")%>>Green <br>
+  <input name="beltQualifier" type="checkbox" value="Purple" <%=selectBelt("Purple")%>>Purple<br>
+  <input name="beltQualifier" type="checkbox" value="Blue" <%=selectBelt("Blue")%>>Blue<br>
+  <input name="beltQualifier" type="checkbox" value="Blue Senior" <%=selectBelt("Blue Senior")%>>Blue Senior<br>
+  <input name="beltQualifier" type="checkbox" value="Brown" <%=selectBelt("Brown")%>>Brown<br>
+  <input name="beltQualifier" type="checkbox" value="Brown Senior" <%=selectBelt("Brown Senior")%>>Brown Senior<br>
+  <input name="beltQualifier" type="checkbox" value="Red" <%=selectBelt("Red")%>>Red<br>
+  <input name="beltQualifier" type="checkbox" value="Junior Black" <%=selectBelt("Junior Black")%>>Junior Black<br>
+  <input name="beltQualifier" type="checkbox" value="Black" <%=selectBelt("Black")%>>Black<br>
+
+  <label for="img">Date:</label>
+
+  <%=foundClass.dateScheduled.toDateString()%>
+
+  <input name="dateScheduled" type="Date">
+
+  <label for="time">Time:</label>
+  <input name="dateScheduled" type="time"><br>
+
+  <input type="submit" name="" value="Submit Changes" />
+
+</form>
+
+</body>
+
+</html>

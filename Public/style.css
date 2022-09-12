@@ -18,11 +18,13 @@ body, html {
     object-fit: contain;
     height: 100%;
     width: 100%;
-    background-image: url(NewIgniteSchoolWallpaper-1.jpeg);
+    background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(NewIgniteSchoolWallpaper-1.jpeg);
     background-position: center center;
     background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
-.backgroundOverlay {
+/* .backgroundOverlay {
     background-color: rgba(0, 0, 0, 0.5);
     width: 100%;
     height: 100%;
@@ -30,11 +32,14 @@ body, html {
     justify-content: center;
     align-items: center;
     z-index: -99;
-}
-h1 {
+} */
+
+h1, h2 {
     color: white;
+    font-family: "Roboto Condensed",Sans-serif;
 }
 li {
+    font-family: "Quicksand";
     color: black;
     list-style: none;
     background-color: rgb(255, 255, 255, 0.6);
@@ -44,8 +49,17 @@ li {
     justify-content: space-between;
     margin-bottom: 5px;
 }
+.classContainerLeft {
+    width: 45%;
+}
 .classContainerRight {
     text-align: right;
+    width: 45%;
+}
+.classContainerIcons {
+    display: flex;
+    flex-direction: column;
+    width: 10%;
 }
 .editIcon {
     max-height: 45px;
@@ -54,7 +68,4 @@ li {
 .deleteIcon {
     max-height: 35px;
     max-width: 35px;
-}
-.form-control {
-    z-index: 999
 }
