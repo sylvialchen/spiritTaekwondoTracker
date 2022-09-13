@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head.ejs') %>
+</head>
+
+<nav>
+  <%- include('../partials/nav.ejs') %>
+</nav>
+
+<body class="backgroundImg">
+
+  <h1>About Class</h1>
+  <section>
+    <div class="editAddShow">
+      <label for="name">Class Name:</label> <%=foundClass.className%><br>
+
+      <label for="beltQualifier">Belts:</label>
+
+      <%for (i = 0; i < foundClass.beltQualifier.length - 1; i++) { %>
+      <%=foundClass.beltQualifier[i]%>,
+      <%}%>
+      <%= foundClass.beltQualifier[foundClass.beltQualifier.length-1] %><br>
+
+  Date & Time: <%=foundClass.dateScheduled.toString()%><br>
+  Instructor: <%=foundClass.instructor%>
+
+  </section>
+</body>
+
+</html>

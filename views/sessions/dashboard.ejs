@@ -20,7 +20,7 @@
     <%for (i=0; i < classes.length; i++) {%>
     <li>
       <section>
-        <p class="classContainerLeft"><label>Class:</label> <%=classes[i].className%><br>
+        <p class="classContainerLeft"><label>Class:</label> <a href="/sessions/<%=classes[i]._id%>"><%=classes[i].className%></a><br>
           <label>Belts:</label> <%=classes[i].beltQualifier[0]%> - <%=classes[i].beltQualifier[classes[i].beltQualifier.length -1]%>
         </p>
         <p class="classContainerMiddle">

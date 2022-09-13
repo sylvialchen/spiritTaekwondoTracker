@@ -12,7 +12,8 @@
 <body class="backgroundImg">
 
   <h1>Edit Class</h1>
-  
+  <section>
+    <div class="editAddShow">
   <form action="/sessions/<%=foundClass._id%>/?_method=PUT" method="POST">
   <label for="name">Class Name:</label>
   <input name="className" type="text" value="<%=foundClass.className%>"><br>
@@ -48,10 +49,13 @@
   <label for="time">Time:</label>
   <input name="dateScheduled" type="time"><br>
 
+  <label for="instructor">Instructor:</label>
+  <input name="instructor" type="text" value="<%=foundClass.instructor%>"><br>
+
   <input type="submit" name="" value="Submit Changes" />
 
 </form>
-
+</section>
 </body>
 
 </html>

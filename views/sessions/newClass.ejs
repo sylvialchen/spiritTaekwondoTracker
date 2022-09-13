@@ -12,9 +12,10 @@
 <body class="backgroundImg">
 
   <h1>Add New Class</h1>
-
+<section>
+  <div class="editAddShow">
   <form action="/sessions/addnewclass" method="POST">
-  <label for="name">Class Name:</label>
+    <label for="name">Class Name:</label>
   <input name="className" type="text"><br>
 
   <label for="beltQualifier">Belts:</label><br>
@@ -31,16 +32,20 @@
   <input name="beltQualifier" type="checkbox" value="Junior Black">Junior Black<br>
   <input name="beltQualifier" type="checkbox" value="Black">Black<br>
 
-  <label for="img">Date:</label>
+  <label for="date">Date:</label>
   <input name="dateScheduled" type="date" value="">
 
-  <label for="img">time:</label>
+  <label for="time">Time:</label>
   <input name="dateScheduled" type="time" value=""><br>
+
+  <label for="instructor">Instructor:</label>
+  <input name="instructor" type="string"><br>
 
   <input type="submit" name="" value="Add Class" />
 
 </form>
-
+</div>
+</section>
 </body>
 
 </html>

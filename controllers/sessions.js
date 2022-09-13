@@ -111,6 +111,14 @@ sessionsRouter.get("/:id/edit", (req, res) => {
   });
 
 // Show
+sessionsRouter.get("/:id", (req, res) => {
+	RidgewoodClasses.findById(req.params.id, (err, foundClass) => {
+		res.render("sessions/aboutClass.ejs", {
+            currentUser: req.session.currentUser,
+            foundClass: foundClass,
+        })
+	});
+});
 
 // Export Sessions Router
 module.exports = sessionsRouter;
