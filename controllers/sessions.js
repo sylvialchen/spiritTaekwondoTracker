@@ -11,12 +11,21 @@ sessionsRouter.use(express.static("Public"));
 
 // Index
 sessionsRouter.get('/signedin', (req,res) => {
-    RidgewoodClasses.find({}, (error, allClasses) => {
+    RidgewoodClasses.find({dateScheduled:{$gte: new Date()}}, (error, allClasses) => {
         res.render('./sessions/dashboard.ejs', {
             currentUser: req.session.currentUser,
             classes: allClasses,
         })
-    })
+    }).sort({dateScheduled: 1})
+})
+
+sessionsRouter.get('/previousClasses', (req,res) => {
+    RidgewoodClasses.find({dateScheduled:{$lt: new Date()}}, (error, allClasses) => {
+        res.render('./sessions/previousClasses.ejs', {
+            currentUser: req.session.currentUser,
+            classes: allClasses,
+        })
+    }).sort({dateScheduled: -1})
 })
 
 // New (login page)

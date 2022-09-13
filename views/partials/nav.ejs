@@ -2,7 +2,7 @@
 	<div class="bg-dark p-4">
 		<% if(currentUser) { %>
 			<a href="/sessions/signedin">Home</a><br>
-			<a href="">Previous Classes</a><br>
+			<a href="/sessions/previousClasses">Previous Classes</a><br>
 			<a href="/sessions/newclass">Add a New Class</a><br>
 			<form action="/sessions?_method=DELETE" method="POST">
 				<input type="submit" value="Log Out" />

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head.ejs') %>
+</head>
+
+<body class="backgroundImg">
+  <nav>
+    <%- include('../partials/nav.ejs') %>
+  </nav>
+
+  <p></p>
+  <h2>Your Stats</h2>
+  <p></p>
+  <h2>Previous Classes</h2>
+  <div>
+    <%const months = ["Jan", "Feb", "March", "April", "May","June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"]%>
+    <%const days= ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]%>
+    <%for (i=0; i < classes.length; i++) {%>
+    <li>
+      <section>
+        <p class="classContainerLeft"><label>Class:</label> <a href="/sessions/<%=classes[i]._id%>"><%=classes[i].className%></a><br>
+          <label>Belts:</label> <%=classes[i].beltQualifier[0]%> - <%=classes[i].beltQualifier[classes[i].beltQualifier.length -1]%>
+        </p>
+        <p class="classContainerMiddle">
+          <!-- Date Parse -->
+          <%day = classes[i].dateScheduled.getDay();%>
+          <%month = classes[i].dateScheduled.getMonth();%>
+          <%date = classes[i].dateScheduled.getDate();%>
+          <%year = classes[i].dateScheduled.getFullYear();%>
+
+          <!-- Time Parse-->
+          <%hour = classes[i].dateScheduled.getHours();%>
+          <% if (parseInt(hour) > 12) { %>
+          <%hour = parseInt(hour) - 12%>
+          <%morningAfternoon = "PM"%>
+          <%} else {%>
+          <%morningAfternoon = "AM"%>
+          <%}%>
+      <%minute = classes[i].dateScheduled.getMinutes();%>
+          <%if (minute < 10){	%>
+          <%minute = ("0" + minute)	%>
+          <%}%>
+
+        <%=days[day]%> <%=hour%>:<%=minute%> <%=morningAfternoon%><br>
+          <%=months[month]%> <%=date%>, <%=year%>
+        </p>
+        <p class="classContainerRight">
+          <a href=""><img class="addIcon" src="134224_add_plus_new_icon.png"></a>
+        </p>
+      </section>
+      <div class="classContainerIcons">
+        <!-- Icons from iconfinder.com -->
+        <a href="/sessions/<%=classes[i]._id%>/edit" class="editIcon"><img class="editIcon" src="8581110_start_writing_pencil_pen_write_icon.png"></a>
+      <form style="display: inline;" action="/sessions/<%=classes[i]._id%>?_method=DELETE" method="POST">
+        <input type="image" class="deleteIcon" src="430088_circle_close_delete_remove_icon.png">
+      </form>
+    </div>
+    </li>
+    <%}%>
+</div>
+
+</section>
+</body>
+
+</html>
