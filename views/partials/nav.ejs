@@ -1,14 +1,24 @@
-<nav>
-	<% if(currentUser) { %>
-		<a href="/sessions/signedin">Home</a>
-		<a href="">Previous Classes</a>
-		<a href="/sessions/newclass">Add a New Class</a>
-		<form action="/sessions?_method=DELETE" method="POST">
-			<input type="submit" value="Log Out" />
-		</form>
-	<% } else { %>
-		<a href="/">Home</a>
-		<a href="/users/new">Register</a>
-		<a href="/sessions/new">Login</a>
-	<% } %>
-</nav>
+<div class="collapse" id="navbarToggleExternalContent">
+	<div class="bg-dark p-4">
+		<% if(currentUser) { %>
+			<a href="/sessions/signedin">Home</a><br>
+			<a href="">Previous Classes</a><br>
+			<a href="/sessions/newclass">Add a New Class</a><br>
+			<form action="/sessions?_method=DELETE" method="POST">
+				<input type="submit" value="Log Out" />
+			</form>
+		<% } else { %>
+			<a href="/">Home</a><br>
+			<a href="/users/new">Register</a><br>
+			<a href="/sessions/new">Login</a><br>
+		<% } %>
+	</div>
+  </div>
+  <nav class="navbar navbar-dark bg-dark">
+	<div class="container-fluid">
+		<h1>Spirit Taekwondo Tracker</h1>
+	  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	  </button>
+	</div>
+  </nav>

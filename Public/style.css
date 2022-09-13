@@ -38,34 +38,60 @@ h1, h2 {
     color: white;
     font-family: "Roboto Condensed",Sans-serif;
 }
-li {
+section {
     font-family: "Quicksand";
     color: black;
     list-style: none;
     background-color: rgb(255, 255, 255, 0.6);
+    width: 100%;
     max-width: 400px;
-    border-radius: 5px;
+    border-radius: 8px;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+}
+li {
+    display: flex;
+    width: 100vw;
+    font-size: medium;
 }
 .classContainerLeft {
-    width: 45%;
+    width: 110%;
 }
-.classContainerRight {
+.classContainerMiddle {
     text-align: right;
-    width: 45%;
+    width: 90%;
+    margin-right: 8px;
+}
+.classContainerRight{
+    position: relative;
+    bottom: -13px;
+    margin-right: 2px;
+}
+.addIcon {
+    max-height: 25px;
+    max-width: 25px;
 }
 .classContainerIcons {
+    width: 5vh;
     display: flex;
-    flex-direction: column;
-    width: 10%;
+    flex-direction:column;
+    box-sizing: content-box;
+    position: relative;
+    top: -7px;
 }
 .editIcon {
-    max-height: 45px;
-    max-width: 45px;
+    box-sizing: content-box;
+    max-height: 40px;
+    max-width: 40px;
+    position: relative;
+    left: -2px;
 }
 .deleteIcon {
-    max-height: 35px;
-    max-width: 35px;
+    box-sizing: content-box;
+    max-height: 30px;
+    max-width: 30px;
+}
+.navbar {
+    
 }
