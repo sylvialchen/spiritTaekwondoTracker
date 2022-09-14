@@ -13,10 +13,56 @@
   <p></p>
   <h2>Your Stats</h2>
   <p></p>
-  <h2>Upcoming Classes</h2>
   <div>
     <%const months = ["Jan", "Feb", "March", "April", "May","June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"]%>
     <%const days= ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]%>
+
+    <h2>Your Upcoming Classes</h2>
+    <%for (i=0; i < uniqueSelectedClasses.length; i++) {%>
+    <li>
+      <section>
+        <p class="classContainerLeft"><label>Class:</label> <a href="/sessions/<%=uniqueSelectedClasses[i][0]._id%>"><%=uniqueSelectedClasses[i][0].className%></a><br>
+          <label>Belts:</label> <%=uniqueSelectedClasses[i][0].beltQualifier[0]%> - <%=uniqueSelectedClasses[i][0].beltQualifier[uniqueSelectedClasses[i][0].beltQualifier.length -1]%>
+        </p>
+        <p class="classContainerMiddle">
+          <!-- Date Parse -->
+          <%day = uniqueSelectedClasses[i][0].dateScheduled.getDay();%>
+          <%month = uniqueSelectedClasses[i][0].dateScheduled.getMonth();%>
+          <%date = uniqueSelectedClasses[i][0].dateScheduled.getDate();%>
+          <%year = uniqueSelectedClasses[i][0].dateScheduled.getFullYear();%>
+
+          <!-- Time Parse-->
+          <%hour = uniqueSelectedClasses[i][0].dateScheduled.getHours();%>
+          <% if (parseInt(hour) > 12) { %>
+          <%hour = parseInt(hour) - 12%>
+          <%morningAfternoon = "PM"%>
+          <%} else {%>
+          <%morningAfternoon = "AM"%>
+          <%}%>
+        <%minute = uniqueSelectedClasses[i][0].dateScheduled.getMinutes();%>
+          <%if (minute < 10){	%>
+          <%minute = ("0" + minute)	%>
+          <%}%>
+          <!-- Display Date & Time -->
+          <%=days[day]%> <%=hour%>:<%=minute%> <%=morningAfternoon%><br>
+          <%=months[month]%> <%=date%>, <%=year%>
+        </p>
+        <p class="classContainerRight">
+
+        </p>
+      </section>
+      <div class="classContainerIcons">
+        <!-- Icons from iconfinder.com -->
+        <a href="/sessions/<%=uniqueSelectedClasses[i][0]._id%>/edit" class="editIcon"><img class="editIcon" src="8581110_start_writing_pencil_pen_write_icon.png"></a>
+        <form style="display: inline;" action="/sessions/<%=uniqueSelectedClasses[i][0]._id%>?_method=DELETE" method="POST">
+          <input type="image" class="deleteIcon" src="430088_circle_close_delete_remove_icon.png">
+        </form>
+      </div>
+    </li>
+    <%};%>
+
+
+    <h2>Other Upcoming Classes</h2>
     <%for (i=0; i < classes.length; i++) {%>
     <li>
       <section>
@@ -38,30 +84,32 @@
           <%} else {%>
           <%morningAfternoon = "AM"%>
           <%}%>
-      <%minute = classes[i].dateScheduled.getMinutes();%>
+          <%minute = classes[i].dateScheduled.getMinutes();%>
           <%if (minute < 10){	%>
           <%minute = ("0" + minute)	%>
           <%}%>
-
-        <%=days[day]%> <%=hour%>:<%=minute%> <%=morningAfternoon%><br>
+            <!-- Display Date & Time -->
+            <%=days[day]%> <%=hour%>:<%=minute%> <%=morningAfternoon%><br>
           <%=months[month]%> <%=date%>, <%=year%>
         </p>
         <p class="classContainerRight">
-          <a href=""><img class="addIcon" src="134224_add_plus_new_icon.png"></a>
+        <form action="/sessions/addToUser/<%=classes[i]._id%>?_method=PUT" method="POST">
+          <input type="image" class="addIcon" src="134224_add_plus_new_icon.png" name="userClassArray">
+        </form>
         </p>
       </section>
       <div class="classContainerIcons">
         <!-- Icons from iconfinder.com -->
         <a href="/sessions/<%=classes[i]._id%>/edit" class="editIcon"><img class="editIcon" src="8581110_start_writing_pencil_pen_write_icon.png"></a>
-      <form style="display: inline;" action="/sessions/<%=classes[i]._id%>?_method=DELETE" method="POST">
-        <input type="image" class="deleteIcon" src="430088_circle_close_delete_remove_icon.png">
-      </form>
-    </div>
+        <form style="display: inline;" action="/sessions/<%=classes[i]._id%>?_method=DELETE" method="POST">
+          <input type="image" class="deleteIcon" src="430088_circle_close_delete_remove_icon.png">
+        </form>
+      </div>
     </li>
-    <%}%>
-</div>
+    <%};%>
+  </div>
 
-</section>
+  </section>
 </body>
 
 </html>

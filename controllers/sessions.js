@@ -9,72 +9,117 @@ module.exports = sessionsRouter;
 
 sessionsRouter.use(express.static("Public"));
 
-// Index
-sessionsRouter.get('/signedin', (req,res) => {
-    RidgewoodClasses.find({dateScheduled:{$gte: new Date()}}, (error, allClasses) => {
+///////////////////////////
+////////// INDEX //////////
+///////////////////////////
+// Dashboard
+
+userSelectedClasses = [];
+sessionsRouter.get('/signedin', (req, res) => {
+    userSelectedClasses.splice(0, userSelectedClasses.length);
+    RidgewoodClasses.find({ dateScheduled: { $gte: new Date() } }, (error, allClasses) => {
+        req.session.currentUser.userClassArray.forEach((userClass) => {
+            allClasses.forEach((allClass) => {  
+                if (userClass == allClass._id) {
+                    // console.log('found matching' + allClass._id)
+                    userSelectedClasses.push(allClasses.splice(allClass,1))
+                }
+            })}),
+            // console.log(userSelectedClasses),
+            // console.log(allClasses)
         res.render('./sessions/dashboard.ejs', {
             currentUser: req.session.currentUser,
             classes: allClasses,
+            uniqueSelectedClasses: userSelectedClasses
         })
-    }).sort({dateScheduled: 1})
+}).sort({ dateScheduled: 1 })
 })
 
-sessionsRouter.get('/previousClasses', (req,res) => {
-    RidgewoodClasses.find({dateScheduled:{$lt: new Date()}}, (error, allClasses) => {
+// Previous Classes
+sessionsRouter.get('/previousClasses', (req, res) => {
+    RidgewoodClasses.find({ dateScheduled: { $lt: new Date() } }, (error, allClasses) => {
         res.render('./sessions/previousClasses.ejs', {
             currentUser: req.session.currentUser,
             classes: allClasses,
         })
-    }).sort({dateScheduled: -1})
+    }).sort({ dateScheduled: -1 })
 })
+/////////////////////////
+////////// NEW //////////
+/////////////////////////
 
-// New (login page)
+// Login Page
 sessionsRouter.get('/new', (req, res) => {
-	res.render('sessions/new.ejs', {
-		currentUser: req.session.currentUser
-	});
+    res.render('sessions/new.ejs', {
+        currentUser: req.session.currentUser
+    });
 });
 
-// New
+// Add New Class Page
 sessionsRouter.get('/newclass', (req, res) => {
     res.render('sessions/newClass.ejs', {
         currentUser: req.session.currentUser
     });
 });
 
+////////////////////////////
+////////// DELETE //////////
+////////////////////////////
 
-// Delete (logout route)
+// Logout Route
 sessionsRouter.delete('/', (req, res) => {
-  req.session.destroy((error) => {
-    res.redirect('/');
-  });
+    req.session.destroy((error) => {
+        res.redirect('/');
+    });
 });
 
-// Delete
+// Delete Class
 sessionsRouter.delete("/:id", (req, res) => {
     RidgewoodClasses.findByIdAndDelete(req.params.id, (err, data) => {
-      res.redirect('signedin')
+        res.redirect('signedin')
     })
-  });
+});
 
+////////////////////////////
+////////// UPDATE //////////
+////////////////////////////
+// Update user's class array by adding selected class
+sessionsRouter.put('/addToUser/:id', (req, res) => {
+    console.log(req.session.currentUser._id)
+    User.findByIdAndUpdate(
+        req.session.currentUser._id,
+        req.params.id,
+        {
+            new: true,
+        },
+        (error, updatedUser) => {
+            updatedUser.userClassArray.push(req.params.id)
+            updatedUser.save();
+            res.redirect('../signedin')
+        }
+    )
+});
 
-// Update
-sessionsRouter.put("/:id", (req, res) => {  
+// Update class info
+sessionsRouter.put("/:id", (req, res) => {
     console.log(req.body)
     RidgewoodClasses.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      {
-        new: true,
-      },
-      (error, updatedClass) => {
-        res.redirect('../signedin')
-      }
+        req.params.id,
+        req.body,
+        {
+            new: true,
+        },
+        (error, updatedClass) => {
+            res.redirect('../signedin')
+        }
     )
-  })
+});
 
 
-// Create (login route)
+////////////////////////////
+////////// CREATE //////////
+////////////////////////////
+// Login Route
 sessionsRouter.post('/', (req, res) => {
     // Check for an existing user
     User.findOne({
@@ -102,31 +147,36 @@ sessionsRouter.post('/', (req, res) => {
     });
 });
 
+// Add New Class
 sessionsRouter.post('/addnewclass', (req, res) => {
     RidgewoodClasses.create(req.body, (error, newClass) => {
-        console.log(req.body)
+        // console.log(req.body)
         res.redirect('signedin');
     });
 });
 
-// Edit
+//////////////////////////
+////////// EDIT //////////
+//////////////////////////
 sessionsRouter.get("/:id/edit", (req, res) => {
     RidgewoodClasses.findById(req.params.id, (err, foundClass) => {
-      res.render('sessions/editClass.ejs', {
-        currentUser: req.session.currentUser,
-        foundClass: foundClass,
-      })
-    })
-  });
-
-// Show
-sessionsRouter.get("/:id", (req, res) => {
-	RidgewoodClasses.findById(req.params.id, (err, foundClass) => {
-		res.render("sessions/aboutClass.ejs", {
+        res.render('sessions/editClass.ejs', {
             currentUser: req.session.currentUser,
             foundClass: foundClass,
         })
-	});
+    })
+});
+
+//////////////////////////
+////////// SHOW //////////
+//////////////////////////
+sessionsRouter.get("/:id", (req, res) => {
+    RidgewoodClasses.findById(req.params.id, (err, foundClass) => {
+        res.render("sessions/aboutClass.ejs", {
+            currentUser: req.session.currentUser,
+            foundClass: foundClass,
+        })
+    });
 });
 
 // Export Sessions Router
