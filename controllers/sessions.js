@@ -16,6 +16,7 @@ sessionsRouter.use(express.static("Public"));
 
 userSelectedClasses = [];
 sessionsRouter.get('/signedin', (req, res) => {
+    if (req.session.currentUser) {
     userSelectedClasses.splice(0, userSelectedClasses.length);
     RidgewoodClasses.find({ dateScheduled: { $gte: new Date() } }, (error, allClasses) => {
         req.session.currentUser.userClassArray.forEach((userClass) => {
@@ -33,7 +34,13 @@ sessionsRouter.get('/signedin', (req, res) => {
             uniqueSelectedClasses: userSelectedClasses
         })
 }).sort({ dateScheduled: 1 })
+} else {
+		res.render('index.ejs', {
+			currentUser: req.session.currentUser
+		});
+	}
 })
+
 
 // Previous Classes
 sessionsRouter.get('/previousClasses', (req, res) => {

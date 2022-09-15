@@ -47,9 +47,9 @@
           <%=days[day]%> <%=hour%>:<%=minute%> <%=morningAfternoon%><br>
           <%=months[month]%> <%=date%>, <%=year%>
         </p>
-        <p class="classContainerRight">
+        <div class="classContainerRight">
 
-        </p>
+        </div>
       </section>
       <div class="classContainerIcons">
         <!-- Icons from iconfinder.com -->
@@ -92,11 +92,11 @@
             <%=days[day]%> <%=hour%>:<%=minute%> <%=morningAfternoon%><br>
           <%=months[month]%> <%=date%>, <%=year%>
         </p>
-        <p class="classContainerRight">
+        <div class="classContainerRight">
         <form action="/sessions/addToUser/<%=classes[i]._id%>?_method=PUT" method="POST">
           <input type="image" class="addIcon" src="134224_add_plus_new_icon.png" name="userClassArray">
         </form>
-        </p>
+      </div>
       </section>
       <div class="classContainerIcons">
         <!-- Icons from iconfinder.com -->
