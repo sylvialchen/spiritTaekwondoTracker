@@ -10,14 +10,14 @@
     <%- include('../partials/nav.ejs') %>
   </nav>
 
+  <h2>Planning Stats</h2>
+  <p class="stats">&#127881; Classes Scheduled: <%=uniqueSelectedClasses.length%></p>
   <p></p>
-  <h2>Your Stats</h2>
-  <p></p>
+
   <div>
+    <h2>My Upcoming Classes</h2>
     <%const months = ["Jan", "Feb", "March", "April", "May","June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"]%>
     <%const days= ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]%>
-
-    <h2>Your Upcoming Classes</h2>
     <%for (i=0; i < uniqueSelectedClasses.length; i++) {%>
     <li>
       <section>

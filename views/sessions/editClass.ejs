@@ -13,10 +13,10 @@
 
   <h1>Edit Class</h1>
   <section>
-    <div class="editAddShow">
+  <div class="editAddShow">
   <form action="/sessions/<%=foundClass._id%>/?_method=PUT" method="POST">
   <label for="name">Class Name:</label>
-  <input name="className" type="text" value="<%=foundClass.className%>"><br>
+  <input name="className" type="text" value="<%=foundClass.className%>"><br><br>
 
   <label for="beltQualifier">Belts:</label><br>
 
@@ -26,33 +26,35 @@
       <%="checked"%>
       <%;break%>
       <%}}}%>
-      
+<table><td>
   <input name="beltQualifier" type="checkbox" value="White" <%=selectBelt("White")%>>White<br>
   <input name="beltQualifier" type="checkbox" value="Yellow" <%=selectBelt("Yellow")%>>Yellow<br>
   <input name="beltQualifier" type="checkbox" value="Orange" <%=selectBelt("Orange")%>>Orange<br>
   <input name="beltQualifier" type="checkbox" value="Green" <%=selectBelt("Green")%>>Green <br>
   <input name="beltQualifier" type="checkbox" value="Purple" <%=selectBelt("Purple")%>>Purple<br>
   <input name="beltQualifier" type="checkbox" value="Blue" <%=selectBelt("Blue")%>>Blue<br>
+</td><td>
   <input name="beltQualifier" type="checkbox" value="Blue Senior" <%=selectBelt("Blue Senior")%>>Blue Senior<br>
   <input name="beltQualifier" type="checkbox" value="Brown" <%=selectBelt("Brown")%>>Brown<br>
   <input name="beltQualifier" type="checkbox" value="Brown Senior" <%=selectBelt("Brown Senior")%>>Brown Senior<br>
   <input name="beltQualifier" type="checkbox" value="Red" <%=selectBelt("Red")%>>Red<br>
   <input name="beltQualifier" type="checkbox" value="Junior Black" <%=selectBelt("Junior Black")%>>Junior Black<br>
   <input name="beltQualifier" type="checkbox" value="Black" <%=selectBelt("Black")%>>Black<br>
+</td></table><br>
 
-  <label for="img">Date:</label>
+  <label for="instructor">Instructor:</label>
+  <input name="instructor" type="text" value="<%=foundClass.instructor%>"><br><br>
 
-  <%=foundClass.dateScheduled.toDateString()%>
+  <label for="img">Currently Scheduled:</label>
+  <%=foundClass.dateScheduled.toDateString()%><br>
 
+  <label for="img">Revised:</label>
   <input name="dateScheduled" type="Date">
 
   <label for="time">Time:</label>
-  <input name="dateScheduled" type="time"><br>
+  <input name="dateScheduled" type="time"><br><br>
 
-  <label for="instructor">Instructor:</label>
-  <input name="instructor" type="text" value="<%=foundClass.instructor%>"><br>
-
-  <input type="submit" name="" value="Submit Changes" />
+  <input class="btn btn-light" type="submit" name="" value="Submit Changes" />
 
 </form>
 </section>

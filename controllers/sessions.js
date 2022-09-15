@@ -83,6 +83,21 @@ sessionsRouter.delete("/:id", (req, res) => {
 ////////////////////////////
 ////////// UPDATE //////////
 ////////////////////////////
+// Update class info
+sessionsRouter.put("/:id", (req, res) => {
+    console.log(req.body)
+    RidgewoodClasses.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        {
+            new: true,
+        },
+        (error, updatedClass) => {
+            res.redirect('../signedin')
+        }
+    )
+});
+
 // Update user's class array by adding selected class
 sessionsRouter.put('/addToUser/:id', (req, res) => {
     console.log(req.session.currentUser._id)
@@ -95,21 +110,6 @@ sessionsRouter.put('/addToUser/:id', (req, res) => {
         (error, updatedUser) => {
             updatedUser.userClassArray.push(req.params.id)
             updatedUser.save();
-            res.redirect('../signedin')
-        }
-    )
-});
-
-// Update class info
-sessionsRouter.put("/:id", (req, res) => {
-    console.log(req.body)
-    RidgewoodClasses.findByIdAndUpdate(
-        req.params.id,
-        req.body,
-        {
-            new: true,
-        },
-        (error, updatedClass) => {
             res.redirect('../signedin')
         }
     )

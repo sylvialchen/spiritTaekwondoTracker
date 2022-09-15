@@ -16,32 +16,36 @@
   <div class="editAddShow">
   <form action="/sessions/addnewclass" method="POST">
     <label for="name">Class Name:</label>
-  <input name="className" type="text"><br>
+  <input name="className" type="text"><br><br>
 
   <label for="beltQualifier">Belts:</label><br>
+  <table><td>
   <input name="beltQualifier" type="checkbox" value="White">White<br>
   <input name="beltQualifier" type="checkbox" value="Yellow">Yellow<br>
   <input name="beltQualifier" type="checkbox" value="Orange">Orange<br>
   <input name="beltQualifier" type="checkbox" value="Green">Green <br>
   <input name="beltQualifier" type="checkbox" value="Purple">Purple<br>
   <input name="beltQualifier" type="checkbox" value="Blue">Blue<br>
+</td><td>
   <input name="beltQualifier" type="checkbox" value="Blue Senior">Blue Senior<br>
   <input name="beltQualifier" type="checkbox" value="Brown">Brown<br>
   <input name="beltQualifier" type="checkbox" value="Brown Senior">Brown Senior<br>
   <input name="beltQualifier" type="checkbox" value="Red">Red<br>
   <input name="beltQualifier" type="checkbox" value="Junior Black">Junior Black<br>
   <input name="beltQualifier" type="checkbox" value="Black">Black<br>
+</td></table><br>
+
+<label for="instructor">Instructor:</label>
+<input name="instructor" type="string"><br><br>
 
   <label for="date">Date:</label>
   <input name="dateScheduled" type="date" value="">
 
+
   <label for="time">Time:</label>
-  <input name="dateScheduled" type="time" value=""><br>
+  <input name="dateScheduled" type="time" value=""><br><br>
 
-  <label for="instructor">Instructor:</label>
-  <input name="instructor" type="string"><br>
-
-  <input type="submit" name="" value="Add Class" />
+  <input class="btn btn-light" type="submit" name="" value="Add Class" />
 
 </form>
 </div>

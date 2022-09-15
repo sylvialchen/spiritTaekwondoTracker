@@ -9,8 +9,20 @@
   <%- include('./partials/nav.ejs') %>
 </nav>
 
-<body class="backgroundImg">
+<body class="backgroundImg">	
+<br>
+<div class="loginRegister">
+	<form action='/sessions' method='POST'>
+		<label for="email">Email:</label><br>
+		<input type="email" name="email" id="email" /><br>
+
+		<label for="password">Password:</label><br>
+		<input type="password" name="password" id="password" /><br><br>
+
+		<input class="btn btn-light" type="submit" value="Login">
+	</form>
 
 </div>
+
 </body>
 </html>
